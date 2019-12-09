@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<title>Coffee For Fuzzy Logicians</title>
+        <meta name="author" content="Jack Guinane"/>
+        <link href="style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="initializer.js"></script>
+		<script type="text/javascript" src="fuzzy-logic.js"></script>
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#8a391c">
+		<meta name="theme-color" content="#98491F">
+		<noscript><style>#no-script{display:block;}</style></noscript>
+	</head>
+	<body>
+		<div id="no-script"><a href="https://www.enable-javascript.com/">JavaScript</a> is required for this page to operate.</div>
+		<header id="header">
+			<div id="logo">Coffee For Fuzzy Logicians</div>
+			<nav><a href="https://github.com/qjack001/CISC-467-Implementation#cisc-467-implementation">About</a></nav>
+		</header>
+		<section id="content">
+			<div id="controls">
+				<div class="box">
+					<div class="slidecontainer">
+						<h3>Caffine</h3>
+						<h6 class="left">Low</h6><h6 class="right">High</h6>
+						<input type="range" min="0" max="100" value="75" class="slider" id="caffine-slider">
+					</div>
+					<div class="slidecontainer">
+						<h3>Body</h3>
+						<h6 class="left">Clean</h6><h6 class="right">Full</h6>
+						<input type="range" min="0" max="100" value="85" class="slider" id="caffine-slider">
+					</div>
+					<div class="slidecontainer">
+						<h3>Acidity</h3>
+						<h6 class="left">Low</h6><h6 class="right">High</h6>
+						<input type="range" min="0" max="100" value="25" class="slider" id="caffine-slider">
+					</div>
+					<div class="slidecontainer">
+						<h3>Sweetness</h3>
+						<h6 class="left">Bitter</h6><h6 class="right">Sweet</h6>
+						<input type="range" min="0" max="100" value="50" class="slider" id="caffine-slider">
+					</div>
+				</div>
+			</div>
+			<div id="output">
+				<div class="box">
+					<h6>Result</h6>
+					<p>You should make a <span id="roast-type">light roast</span> coffee using <span id="brew-type">a French Press</span>, and add <span id="sugar-type">2&frac14; teaspoons of sugar</span>.</p>
+				</div>
+			</div>
+		</section>
+		
+		<script>
+			setUpNav();
+		</script>
+	</body>
+</html>
