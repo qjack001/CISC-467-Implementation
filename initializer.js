@@ -1,3 +1,15 @@
+/*
+	This is the implementation of the Coffee Brewing fuzzy expert system defined in my term paper.
+	
+	Author: Jack Guinane
+	Last updated: 2019-06-18
+*/
+
+
+/*
+	global variables (set up in init(), used in runFuzzySystem())
+*/
+
 // HTML input and output elements
 var caffeine_input;
 var body_input;
@@ -17,6 +29,9 @@ var roast;
 var brew;
 var sugar;
 
+/*
+	initializer function, runs on start
+*/
 function init()
 {
 	// create listener for header on scroll
@@ -24,7 +39,7 @@ function init()
 	var header = document.getElementById("header");
 	window.addEventListener('scroll', function () { if(window.pageYOffset > 30) { header.className = "scroll"; } else { header.className = ""; }});
 	
-	//initialize the inputs and outputs
+	// initialize the inputs and outputs
 	caffeine_input = document.getElementById("caffeine-slider");
 	body_input = document.getElementById("body-slider");
 	acidity_input = document.getElementById("acid-slider");
@@ -41,6 +56,10 @@ function init()
 	sweetness_input.addEventListener("change", runFuzzySystem, false);
 }
 
+/*
+	The steps defined in the paper
+	Computes the result of the fuzzy expert system whenever an input is updatted
+*/
 function runFuzzySystem()
 {	
 	// initialize the measurable quantities
@@ -104,7 +123,6 @@ function runFuzzySystem()
 			]);
 			
 			// take highest membership of center of mass (re-fuzzify) 
-			console.log(roast.light_weight + ", " + roast. medium_weight + ", " + roast.dark_weight);
 			if(crisp <= 30) { return "light roast"; }
 			else if(crisp < 70) { return "medium roast"; }
 			else { return "dark roast"; }
@@ -134,10 +152,10 @@ function runFuzzySystem()
 			]);
 			
 			// take highest membership of center of mass (re-fuzzify) 
-			if(crisp < 25) { return "a Moka pot"; }
-			else if(crisp < 50) { return "a french press"; }
+			if(crisp < 25) { return "a Moka Pot"; }
+			else if(crisp < 50) { return "a French Press"; }
 			else if(crisp < 75) { return "an Aeropress"; }
-			else { return "a pour over dripper"; }
+			else { return "a Pour-Over"; }
 		}
 	}
 	
@@ -160,7 +178,7 @@ function runFuzzySystem()
 				{"fn": buildMembershipFunction(60, 80, 100, 100), "weight": sugar.high_weight}
 			]);
 			
-			// convert cripsp value into words
+			// convert crisp value into words
 			if(crisp < 30) { return "no sugar"; }
 			else if(crisp < 40) { return "a pinch of sugar"; }
 			else if(crisp < 50) { return "1 teaspoon of sugar"; }
@@ -174,23 +192,23 @@ function runFuzzySystem()
 	
 	// run the fuzzy rules
 	// format: rule(CONDITIONAL, CONSEQUENT), repersenting: IF CONDITIONAL, THEN CONSEQUENT
+	// for refrence, the rules are listed in order of how they appear in the term paper
 	rule(sweetness.isHigh, sugar.isHigh);
 	rule(sweetness.isMed, sugar.isMed);
 	rule(sweetness.isLow, sugar.isLow);
-	
 	rule(and(caffeine.isHigh, not(sweetness.isLow)), sugar.isHigh);
 	rule(and(caffeine.isHigh, sweetness.isLow), sugar.isMed);
+	
+	rule(acidity.isHigh, roast.isLight);
+	rule(acidity.isLow, roast.isDark);
+	rule(and(caffeine.isHigh, not(body.isHigh)), roast.isLight);
+	rule(or(body.isHigh, caffeine.isLow), roast.isDark);
 	
 	rule(caffeine.isHigh, brew.isMoka);
 	rule(and(caffeine.isLow, not(acidity.isLow)), brew.isPourOver);
 	rule(and(body.isHigh, acidity.isLow), brew.isFrenchPress);
 	rule(and(acidity.isHigh, body.isLow), brew.isPourOver);
 	rule(and(acidity.isLow, body.isLow), brew.isAeropress);
-	
-	rule(acidity.isHigh, roast.isLight);
-	rule(acidity.isLow, roast.isDark);
-	rule(and(caffeine.isHigh, not(body.isHigh)), roast.isLight);
-	rule(or(body.isHigh, caffeine.isLow), roast.isDark);
 	
 	// update the results
 	roast_output.innerHTML = roast.defuzz();
