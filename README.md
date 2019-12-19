@@ -56,13 +56,13 @@ For the fuzzy system’s input, I chose to use the terms used by baristas and co
 The system takes input values as integers from 0 to 100. To fuzzify these values, a membership function is used to determine the inputs membership in the sets LOW, MED (medium), and HIGH. For the values “Caffeine,” “Body,” and “Acidity,” the straight-forward membership function shown below is used.
 
 
-![*Fig 1: the membership function used for Caffeine, Body, and Acidity*](fig1.png)
+![*Fig 1: the membership function used for Caffeine, Body, and Acidity*](https://raw.githubusercontent.com/qjack001/CISC-467-Implementation/master/fig1.png)
 
 
 This membership function provides a desired amount of fuzziness, while reflecting the natural definition of each of these sets. The input “Sweetness,” however, is fuzzified using its own unique membership function:
  
 
-![*Fig 2: the membership function used for Sweetness*](fig2.png)
+![*Fig 2: the membership function used for Sweetness*](https://raw.githubusercontent.com/qjack001/CISC-467-Implementation/master/fig2.png)
 
 
 The function for “Sweetness” has a more gradual transition from LOW to MED, and a slightly sharper change from MED to HIGH. This shift is done to reflect the desires of the user better. While those who like a high sweetness enjoy a large amount of sugar, those who do not will likely desire very little—if any at all. By exaggerating the slopes from LOW to MED, the system can produce more nuanced results while still allowing for high volumes of sugar.
