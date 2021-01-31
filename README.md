@@ -126,7 +126,7 @@ Once the rules have been computed, they are scaled by their truth value, and the
 
 ## Implementation
 
-JavaScript was chosen for its ubiquity, allowing the system to run on nearly any computer in a web browser. It also allowed for the most user-friendly interface (discussed further below). The system is mainly comprised of two JavaScript files, one containing general fuzzy logic functions and the other containing the specific steps of this system. Note that this section is quite long, as I have included code snippets—jump to page 16 to skip to the Conclusion section.
+JavaScript was chosen for its ubiquity, allowing the system to run on nearly any computer in a web browser. It also allowed for the most user-friendly interface (discussed further below). The system is mainly comprised of two JavaScript files, one containing general fuzzy logic functions and the other containing the specific steps of this system.
 
 To begin, four sliders are setup (standard HTML input sliders) as well as the three outputs (just `<span>` tags). A listener is created for each slider, and the fuzzy system is run whenever a change is detected (this is done in the `init()` function on lines 1 to 43 of `initializer.js`) 
 
